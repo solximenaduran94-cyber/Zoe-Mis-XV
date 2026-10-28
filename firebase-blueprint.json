@@ -1,0 +1,43 @@
+{
+  "entities": {
+    "GuestMessage": {
+      "title": "GuestMessage",
+      "description": "A dedication message written by a guest for Zoe on her 15th birthday invitation.",
+      "type": "object",
+      "properties": {
+        "authorName": {
+          "type": "string",
+          "description": "Name of the guest leaving the message.",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "message": {
+          "type": "string",
+          "description": "Dedication message or wishes for Zoe.",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "song": {
+          "type": "string",
+          "description": "Optional recommended song for the party.",
+          "minLength": 0,
+          "maxLength": 120
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the message was created."
+        }
+      },
+      "required": ["authorName", "message", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/messages/{messageId}": {
+      "schema": {
+        "$ref": "#/entities/GuestMessage"
+      },
+      "description": "Public guestbook messages and dedications written for Zoe on her 15th birthday page."
+    }
+  }
+}
